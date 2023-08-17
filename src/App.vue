@@ -1,26 +1,38 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+
+
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-  <div>
-    <router-link to="/">Home</router-link>
-    <span> | </span>
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view></router-view>
+  <v-app class="rounded rounded-md">
+    <v-app-bar flat class="px-5">
+      <v-avatar
+        color="grey-darken-1"
+        size="32"
+      >:)</v-avatar>
+      <v-divider vertical class="mx-5"></v-divider>
+      <v-tabs>
+        <v-tab v-for="(link, i) in links" :key="i" :to="link.route"> {{link.title}}</v-tab>
+      </v-tabs>
+      <v-spacer></v-spacer>
+    </v-app-bar>
+
+    <v-main class="align-center h-screen">
+      <v-container class="d-flex">
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
+
+<script>
+  export default {
+    data: () => ({
+      links: [
+        {'title':'Home', 'route':'/'},
+        {'title':'About', 'route':'/about'},
+      ],
+    }),
+  }
+</script>
 
 <style scoped>
 .logo {
